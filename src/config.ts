@@ -18,17 +18,31 @@ export const siteConfig = {
     "Rapid Prototyping",
     "Systems Engineering",
   ],
+  // Publication fetching configuration
+  publicationConfig: {
+    // Set to true to fetch publications dynamically at build time
+    enableDynamicFetch: false, // Set to true when ready to use
+    authorName: "Jonah Mack",
+    // Add your ORCID ID here if you have one (recommended for accuracy)
+    orcidId: null, // e.g., "0000-0000-0000-0000"
+    // Sources to fetch from
+    sources: {
+      orcid: true, // Fetch from ORCID (requires orcidId)
+      googleScholar: true, // Fetch from Google Scholar
+    },
+    // Only fetch publications from this year onwards
+    yearLow: 2020,
+  },
   publications: [
     {
       title:
-        "Automated Laboratory Systems for High-Throughput Material Characterization",
-      authors: "J. Mack, A. Smith, B. Johnson",
-      journal: "Journal of Laboratory Automation",
-      year: "2024",
-      volume: "29",
-      pages: "145-162",
-      doi: "10.1177/2211068224001234",
-      link: "https://doi.org/10.1177/2211068224001234",
+        "A Design of a Hall effect sensor controlled brittle star inspired composite robotic limb",
+      authors: "J. Mack, P.Alam",
+      journal: "Engineering Research Express",
+      year: "2022",
+      volume: "4",
+      doi: "10.1088/2631-8695/ac90ac",
+      link: "https://doi.org/10.1088/2631-8695/ac90ac",
     },
     {
       title:
