@@ -1,0 +1,107 @@
+---
+import { siteConfig } from "../config";
+const hasPublications = siteConfig.publications && siteConfig.publications.length > 0;
+---
+
+{
+  hasPublications && (
+    <section id="publications" class="p-8 sm:p-12 md:p-16 lg:p-24">
+      <div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+          <div class="lg:col-span-4">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+              Publications
+            </h2>
+            <div
+              class="w-[75px] h-[5px] mt-2 rounded-full"
+              style={`background-color: ${siteConfig.accentColor}`}
+            />
+          </div>
+
+          <div class="lg:col-span-8">
+            <div class="space-y-8">
+              {siteConfig.publications.map((publication, index) => {
+                const Component = publication.link ? "a" : "div";
+                const linkProps = publication.link
+                  ? {
+                      href: publication.link,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    }
+                  : {};
+
+                return (
+                  <div class="group relative">
+                    <Component
+                      {...linkProps}
+                      class={`block relative p-4 sm:p-6 md:p-8 bg-gray-50 rounded-xl sm:rounded-2xl border border-gray-200 transition-all duration-300 ${
+                        publication.link
+                          ? "hover:bg-white hover:shadow-xl hover:border-gray-300 hover:-translate-y-1"
+                          : ""
+                      }`}
+                    >
+                      {publication.link && (
+                        <div class="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center bg-gray-900 rounded-full text-white transition-all duration-300 group-hover:bg-gray-700">
+                          <svg
+                            class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
+                          </svg>
+                        </div>
+                      )}
+
+                      <div class="space-y-3">
+                        <div>
+                          <span
+                            class="text-sm font-mono"
+                            style={{ color: siteConfig.accentColor }}
+                          >
+                            [{publication.year}]
+                          </span>
+                          <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mt-1 leading-tight">
+                            {publication.title}
+                          </h3>
+                        </div>
+
+                        <div class="space-y-2">
+                          <p class="text-base sm:text-lg text-gray-700 font-medium">
+                            {publication.authors}
+                          </p>
+
+                          <div class="text-sm sm:text-base text-gray-600">
+                            <span class="font-medium italic">{publication.journal}</span>
+                            {publication.volume && (
+                              <span>, Vol. {publication.volume}</span>
+                            )}
+                            {publication.pages && (
+                              <span>, pp. {publication.pages}</span>
+                            )}
+                            <span> ({publication.year})</span>
+                          </div>
+
+                          {publication.doi && (
+                            <div class="text-xs sm:text-sm text-gray-500 font-mono">
+                              DOI: {publication.doi}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </Component>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

@@ -18,6 +18,40 @@ export const siteConfig = {
     "Rapid Prototyping",
     "Systems Engineering",
   ],
+  publications: [
+    {
+      title:
+        "Automated Laboratory Systems for High-Throughput Material Characterization",
+      authors: "J. Mack, A. Smith, B. Johnson",
+      journal: "Journal of Laboratory Automation",
+      year: "2024",
+      volume: "29",
+      pages: "145-162",
+      doi: "10.1177/2211068224001234",
+      link: "https://doi.org/10.1177/2211068224001234",
+    },
+    {
+      title:
+        "Machine Learning Approaches for Additive Manufacturing Process Optimization",
+      authors: "J. Mack, C. Davis, E. Wilson",
+      journal: "Additive Manufacturing",
+      year: "2023",
+      volume: "78",
+      pages: "103-118",
+      doi: "10.1016/j.addma.2023.103456",
+      link: "https://doi.org/10.1016/j.addma.2023.103456",
+    },
+    {
+      title:
+        "Robotic Systems for Autonomous Material Testing in Research Laboratories",
+      authors: "J. Mack, F. Brown, G. Taylor",
+      journal: "Robotics and Autonomous Systems",
+      year: "2023",
+      volume: "162",
+      pages: "89-104",
+      doi: "10.1016/j.robot.2023.104567",
+    },
+  ],
   projects: [
     {
       name: "AI Dev Roundup Newsletter",
@@ -75,24 +109,19 @@ export const siteConfig = {
   ],
   education: [
     {
-      school: "University Name",
-      degree: "Bachelor of Science in Computer Science",
-      dateRange: "2014 - 2018",
+      school: "University of Edinburgh",
+      degree: "Bachelor of Engineering with Honors",
+      dateRange: "2018 - 2022",
       achievements: [
-        "Graduated Magna Cum Laude with 3.8 GPA",
-        "Dean's List all semesters",
-        "President of Computer Science Club",
+        "Honors thesis awarded best project by the Institute of Mechanical Engineers",
+        "Graduated with a 2.1",
       ],
     },
     {
-      school: "Online Platform",
-      degree: "Full Stack Development Certificate",
-      dateRange: "2019",
-      achievements: [
-        "Completed 500+ hours of coursework",
-        "Built 10+ portfolio projects",
-        "Specialized in React and Node.js",
-      ],
+      school: "University of Edinburgh",
+      degree: "PhD in Robotics and Autonomous Systems",
+      dateRange: "2022 - present",
+      achievements: ["Outreach and communication award"],
     },
   ],
 };
