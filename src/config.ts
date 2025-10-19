@@ -1,17 +1,23 @@
 export const siteConfig = {
-  name: "Ryan Fitzgerald",
-  title: "Senior Software Engineer",
-  description: "Portfolio website of Ryan Fitzgerald",
-  accentColor: "#1d4ed8",
+  name: "Jonah Mack",
+  title: "Additive Manufacturing and Lab Automation PhD Student",
+  description: "My website",
+  accentColor: "#7900ffff",
   social: {
-    email: "your-email@example.com",
-    linkedin: "https://linkedin.com/in/yourprofile",
-    twitter: "https://x.com/rfitzio",
-    github: "https://github.com/RyanFitzgerald",
+    email: "s1862353@ed.ac.uk",
+    linkedin: "https://linkedin.com/in/jonah-mack",
+    github: "https://github.com/Jmack66",
   },
   aboutMe:
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quos asperiores nihil consequatur tempore cupiditate architecto natus commodi corrupti quas quasi facere est, dignissimos odit nam veniam sapiente ut, vitae eligendi ipsum dolor, nostrum ullam impedit! Corrupti ratione mollitia temporibus necessitatibus, consectetur reiciendis recusandae id, dolorum quaerat, vero pariatur. Ratione!",
-  skills: ["Javascript", "React", "Node.js", "Python", "AWS", "Docker"],
+    "PhD Student in Robotics and Autonomous systems at the University of Edinburgh, focusing on laboratory automation and additive manufacturing. I like to build things.",
+  skills: [
+    "CAD",
+    "C++",
+    "Control Systems",
+    "Manufacturing",
+    "Rapid Prototyping",
+    "Systems Engineering",
+  ],
   projects: [
     {
       name: "AI Dev Roundup Newsletter",
