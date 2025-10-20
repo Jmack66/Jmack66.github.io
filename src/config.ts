@@ -21,13 +21,13 @@ export const siteConfig = {
   // Publication fetching configuration
   publicationConfig: {
     // Set to true to fetch publications dynamically at build time
-    enableDynamicFetch: false, // Set to true when ready to use
+    enableDynamicFetch: true, // Set to true when ready to use
     authorName: "Jonah Mack",
     // Add your ORCID ID here if you have one (recommended for accuracy)
     orcidId: null, // e.g., "0000-0000-0000-0000"
     // Sources to fetch from
     sources: {
-      orcid: true, // Fetch from ORCID (requires orcidId)
+      orcid: false, // Fetch from ORCID (requires orcidId)
       googleScholar: true, // Fetch from Google Scholar
     },
     // Only fetch publications from this year onwards
