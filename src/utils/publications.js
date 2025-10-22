@@ -1,4 +1,10 @@
 import { search } from "@rpidanny/google-scholar";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /**
  * Fetches publications from Google Scholar for a given author
@@ -87,13 +93,7 @@ export async function fetchGoogleScholarPublications(authorName, options = {}) {
       }
 
       // Handle year - extract from various possible formats
-      let year = new Date().getFullYear().toString();
-      if (paper.year) {
-        year = paper.year.toString();
-      } else if (paper.date) {
-        const yearMatch = paper.date.match(/\d{4}/);
-        if (yearMatch) year = yearMatch[0];
-      }
+      let year = extractYearFromPaper(paper);
 
       // Clean up title - remove [HTML][HTML] and other prefixes
       let cleanTitle = paper.title || "Untitled";
@@ -263,6 +263,115 @@ function extractDoiFromUrl(url) {
   }
 
   return null;
+}
+
+/**
+ * Extract publication year from paper data with multiple fallbacks
+ */
+function extractYearFromPaper(paper) {
+  // Load manual dates from external configuration
+  let manualDates = {};
+  try {
+    const configPath = path.join(__dirname, "../../publication-dates.json");
+    const configData = JSON.parse(fs.readFileSync(configPath, "utf8"));
+    manualDates = configData.manualDates || {};
+  } catch (error) {
+    console.warn(
+      "Could not load publication-dates.json, using fallback detection",
+    );
+  }
+
+  // Check manual override first
+  const cleanTitle = paper.title
+    ?.replace(/^\[(HTML|PDF|CITATION)\]\[(HTML|PDF|CITATION)\]\s*/, "")
+    .trim();
+  if (cleanTitle && manualDates[cleanTitle]) {
+    return manualDates[cleanTitle];
+  }
+
+  // Try paper.year field
+  if (paper.year && paper.year !== "2025") {
+    return paper.year.toString();
+  }
+
+  // Try paper.date field
+  if (paper.date) {
+    const yearMatch = paper.date.match(/\d{4}/);
+    if (yearMatch && parseInt(yearMatch[0]) <= new Date().getFullYear()) {
+      return yearMatch[0];
+    }
+  }
+
+  // Try to extract from description
+  if (paper.description) {
+    const descYearMatches = paper.description.match(/\b(19|20)\d{2}\b/g);
+    if (descYearMatches) {
+      // Get the most recent reasonable year
+      const years = descYearMatches
+        .map((y) => parseInt(y))
+        .filter((y) => y >= 2015 && y <= new Date().getFullYear())
+        .sort((a, b) => b - a);
+      if (years.length > 0) {
+        return years[0].toString();
+      }
+    }
+  }
+
+  // Try to extract from URL patterns (DOI, journal URLs often contain years)
+  if (paper.url) {
+    const urlYearMatch = paper.url.match(/\/(19|20)(\d{2})\//);
+    if (urlYearMatch) {
+      const year = parseInt(urlYearMatch[1] + urlYearMatch[2]);
+      if (year >= 2015 && year <= new Date().getFullYear()) {
+        return year.toString();
+      }
+    }
+  }
+
+  // Try source URL as well
+  if (paper.source?.url) {
+    const sourceYearMatch = paper.source.url.match(/\/(19|20)(\d{2})\//);
+    if (sourceYearMatch) {
+      const year = parseInt(sourceYearMatch[1] + sourceYearMatch[2]);
+      if (year >= 2015 && year <= new Date().getFullYear()) {
+        return year.toString();
+      }
+    }
+  }
+
+  // Try citation information if available
+  if (paper.citation?.url) {
+    const citationYearMatch = paper.citation.url.match(/as_ylo=(\d{4})/);
+    if (citationYearMatch) {
+      const year = parseInt(citationYearMatch[1]);
+      if (year >= 2015 && year <= new Date().getFullYear()) {
+        return year.toString();
+      }
+    }
+  }
+
+  // Last resort: try to find any 4-digit number that looks like a reasonable publication year
+  const allText = [
+    paper.title,
+    paper.description,
+    paper.url,
+    paper.source?.url,
+  ].join(" ");
+  const allYearMatches = allText.match(/\b(19|20)\d{2}\b/g);
+  if (allYearMatches) {
+    const reasonableYears = allYearMatches
+      .map((y) => parseInt(y))
+      .filter((y) => y >= 2015 && y <= new Date().getFullYear())
+      .sort((a, b) => b - a); // Most recent first
+
+    if (reasonableYears.length > 0) {
+      return reasonableYears[0].toString();
+    }
+  }
+
+  // Final fallback - use current year but warn
+  console.warn(`Could not determine publication year for: ${paper.title}`);
+  return new Date().getFullYear().toString();
 }
 
 /**

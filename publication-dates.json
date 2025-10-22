@@ -1,0 +1,16 @@
+{
+  "manualDates": {
+    "An Optimised Spider-Inspired Soft Actuator for Extraterrestrial Exploration": "2024",
+    "Design of a Hall effect sensor controlled brittle star inspired composite robotic limb": "2022",
+    "A standardized platform for translational advances in fluidic soft systems": "2024",
+    "Fluidic FlowBots: Intelligence embodied in the characteristics of recirculating fluid flow": "2024",
+    "From e-waste to robots: a case study on e-waste upcycling in low-to-middle income countries": "2024",
+    "Towards a Bio-Inspired Integrated Total Habitability Instrument": "2024",
+    "Sundoli: A necro (w) bot with multi-stiffness joints built using geared mechanical metastructures": "2024"
+  },
+  "_instructions": {
+    "description": "Manual date overrides for publications when Google Scholar doesn't provide accurate dates",
+    "usage": "Add entries in the format: 'Exact Publication Title': 'YYYY'",
+    "note": "Titles must match exactly (after removing [HTML][HTML] prefixes)"
+  }
+}
