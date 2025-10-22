@@ -21,7 +21,7 @@ export const siteConfig = {
   // Publication fetching configuration
   publicationConfig: {
     // Set to true to fetch publications dynamically at build time
-    enableDynamicFetch: false, // Temporarily disabled to test static fallback
+    enableDynamicFetch: false, // Disabled - using local script to update static publications
     authorName: "Jonah Mack",
     // Add your ORCID ID here if you have one (recommended for accuracy)
     orcidId: null, // e.g., "0000-0000-0000-0000"
@@ -35,35 +35,63 @@ export const siteConfig = {
   },
   publications: [
     {
-      title:
-        "A Design of a Hall effect sensor controlled brittle star inspired composite robotic limb",
-      authors: "J. Mack, P.Alam",
-      journal: "Engineering Research Express",
-      year: "2022",
-      volume: "4",
-      doi: "10.1088/2631-8695/ac90ac",
-      link: "https://doi.org/10.1088/2631-8695/ac90ac",
+      title: "An Optimised Spider-Inspired Soft Actuator for Extraterrestrial Exploration",
+      authors: "J Mack, M Gepner, F Giorgio-Serchi, AA Stokes",
+      journal: "MDPI Journal",
+      year: "2025",
+      link: "https://www.mdpi.com/2313-7673/10/7/455",
     },
     {
-      title:
-        "Machine Learning Approaches for Additive Manufacturing Process Optimization",
-      authors: "J. Mack, C. Davis, E. Wilson",
-      journal: "Additive Manufacturing",
-      year: "2023",
-      volume: "78",
-      pages: "103-118",
-      doi: "10.1016/j.addma.2023.103456",
-      link: "https://doi.org/10.1016/j.addma.2023.103456",
+      title: "A standardized platform for translational advances in fluidic soft systems",
+      authors: "M Gepner, J Mack, AA Stokes",
+      journal: "CELL",
+      year: "2025",
+      link: "https://www.cell.com/device/fulltext/S2666-9986(25)00113-9",
     },
     {
-      title:
-        "Robotic Systems for Autonomous Material Testing in Research Laboratories",
-      authors: "J. Mack, F. Brown, G. Taylor",
-      journal: "Robotics and Autonomous Systems",
-      year: "2023",
-      volume: "162",
-      pages: "89-104",
-      doi: "10.1016/j.robot.2023.104567",
+      title: "Design of a Hall effect sensor controlled brittle star inspired composite robotic limb",
+      authors: "J Mack, P Alam",
+      journal: "IOPSCIENCE.IOP",
+      year: "2025",
+      doi: "10.1088/2631-8695/ac90ac/meta",
+      link: "https://iopscience.iop.org/article/10.1088/2631-8695/ac90ac/meta",
+    },
+    {
+      title: "Fluidic FlowBots: Intelligence embodied in the characteristics of recirculating fluid flow",
+      authors: "M Gepner, J Mack, F Giorgio-Serchi",
+      journal: "IEEE Publication",
+      year: "2025",
+      link: "https://ieeexplore.ieee.org/abstract/document/10522011/",
+    },
+    {
+      title: "From e-waste to robots: a case study on e-waste upcycling in low-to-middle income countries",
+      authors: "J Mack, P Alam",
+      journal: "RESEARCH.ED.AC.UK",
+      year: "2025",
+      link: "https://ieeexplore.ieee.org/abstract/document/9698905/",
+    },
+    {
+      title: "Towards a Bio-Inspired Integrated Total Habitability Instrument",
+      authors: "J Mack, I Underwood",
+      journal: "PREPRINTS",
+      year: "2025",
+      doi: "10.0263/download/final_file",
+      link: "https://www.preprints.org/manuscript/202510.0263/download/final_file",
+    },
+    {
+      title: "Sundoli: A necro (w) bot with multi-stiffness joints built using geared mechanical metastructures",
+      authors: "H Lee, J Mack, P Alam",
+      journal: "BIORXIV",
+      year: "2025",
+      doi: "10.1101/2025.05.16.654441",
+      link: "https://www.biorxiv.org/content/10.1101/2025.05.16.654441",
+    },
+    {
+      title: "Corrigendum: Design of a Hall effect sensor controlled brittle star inspired composite robotic limb (2022 Eng. Res. Express 4 036001)",
+      authors: "J Mack, P Alam",
+      journal: "Unknown Venue",
+      year: "2025",
+      link: "https://www.research.ed.ac.uk/en/publications/corrigendum-design-of-a-hall-effect-sensor-controlled-brittle-sta",
     },
   ],
   projects: [

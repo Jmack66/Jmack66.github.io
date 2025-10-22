@@ -6,7 +6,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "update-publications": "node scripts/update-publications.js",
+    "update-publications:dry-run": "node scripts/update-publications.js --dry-run",
+    "update-publications:recent": "node scripts/update-publications.js --year 2022"
   },
   "dependencies": {
     "@rpidanny/google-scholar": "^3.3.0",
