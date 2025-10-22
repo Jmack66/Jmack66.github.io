@@ -4,20 +4,42 @@ import { fetchPublications } from "../utils/publications.js";
 
 // Get publications - either from dynamic fetch or static config
 let publications = [];
+let publicationSource = "static";
+
+// Always start with static publications as fallback
+publications = siteConfig.publications || [];
+
+// Try to fetch dynamic publications if enabled
 if (siteConfig.publicationConfig?.enableDynamicFetch) {
     try {
-        publications = await fetchPublications(siteConfig.publicationConfig);
+        console.log("Attempting to fetch dynamic publications...");
+        const dynamicPublications = await fetchPublications(
+            siteConfig.publicationConfig,
+        );
+        if (dynamicPublications && dynamicPublications.length > 0) {
+            publications = dynamicPublications;
+            publicationSource = "dynamic";
+            console.log(
+                `Successfully loaded ${publications.length} publications from ${publicationSource} source`,
+            );
+        } else {
+            console.warn(
+                "Dynamic fetch returned no publications, using static fallback",
+            );
+        }
     } catch (error) {
-        console.warn(
-            "Failed to fetch dynamic publications, falling back to static:",
+        console.error(
+            "Failed to fetch dynamic publications, using static fallback:",
             error,
         );
-        publications = siteConfig.publications || [];
     }
 } else {
-    publications = siteConfig.publications || [];
+    console.log("Dynamic fetch disabled, using static publications");
 }
 
+console.log(
+    `Final publication count: ${publications.length} (source: ${publicationSource})`,
+);
 const hasPublications = publications && publications.length > 0;
 ---
 

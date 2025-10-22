@@ -21,7 +21,7 @@ export const siteConfig = {
   // Publication fetching configuration
   publicationConfig: {
     // Set to true to fetch publications dynamically at build time
-    enableDynamicFetch: true, // Set to true when ready to use
+    enableDynamicFetch: false, // Temporarily disabled to test static fallback
     authorName: "Jonah Mack",
     // Add your ORCID ID here if you have one (recommended for accuracy)
     orcidId: null, // e.g., "0000-0000-0000-0000"
