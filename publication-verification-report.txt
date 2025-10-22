@@ -1,0 +1,98 @@
+Publication Date Verification Report
+Generated: 2025-10-22T11:38:15.678Z
+================================================
+
+Instructions:
+1. Visit each URL below
+2. Find the actual publication date on the journal website
+3. If the date is wrong, update using: npm run set-publication-date "Title" YYYY
+
+Publications to verify:
+
+1. An Optimised Spider-Inspired Soft Actuator for Extraterrestrial Exploration
+   Current Year: 2025
+   URL: https://www.mdpi.com/2313-7673/10/7/455
+   URL Hints: Check MDPI volume/issue for publication year
+
+   [ ] Verified correct  [ ] Needs update to: ____
+
+   ================================================================================
+
+2. A standardized platform for translational advances in fluidic soft systems
+   Current Year: 2024
+   URL: https://www.cell.com/device/fulltext/S2666-9986(25)00113-9
+   URL Hints: None
+
+   [ ] Verified correct  [ ] Needs update to: ____
+
+   ================================================================================
+
+3. Design of a Hall effect sensor controlled brittle star inspired composite robotic limb
+   Current Year: 2022
+   URL: https://iopscience.iop.org/article/10.1088/2631-8695/ac90ac/meta
+   URL Hints: DOI suggests: 2631
+
+   [ ] Verified correct  [ ] Needs update to: ____
+
+   ================================================================================
+
+4. Fluidic FlowBots: Intelligence embodied in the characteristics of recirculating fluid flow
+   Current Year: 2024
+   URL: https://ieeexplore.ieee.org/abstract/document/10522011/
+   URL Hints: None
+
+   [ ] Verified correct  [ ] Needs update to: ____
+
+   ================================================================================
+
+5. From e-waste to robots: a case study on e-waste upcycling in low-to-middle income countries
+   Current Year: 2024
+   URL: https://ieeexplore.ieee.org/abstract/document/9698905/
+   URL Hints: None
+
+   [ ] Verified correct  [ ] Needs update to: ____
+
+   ================================================================================
+
+6. Towards a Bio-Inspired Integrated Total Habitability Instrument
+   Current Year: 2024
+   URL: https://www.preprints.org/manuscript/202510.0263/download/final_file
+   URL Hints: None
+
+   [ ] Verified correct  [ ] Needs update to: ____
+
+   ================================================================================
+
+7. Sundoli: A necro (w) bot with multi-stiffness joints built using geared mechanical metastructures
+   Current Year: 2024
+   URL: https://www.biorxiv.org/content/10.1101/2025.05.16.654441
+   URL Hints: 2025, DOI suggests: 2025
+
+   [ ] Verified correct  [ ] Needs update to: ____
+
+   ================================================================================
+
+8. Corrigendum: Design of a Hall effect sensor controlled brittle star inspired composite robotic limb (2022 Eng. Res. Express 4 036001)
+   Current Year: 2022
+   URL: https://www.research.ed.ac.uk/en/publications/corrigendum-design-of-a-hall-effect-sensor-controlled-brittle-sta
+   URL Hints: None
+
+   [ ] Verified correct  [ ] Needs update to: ____
+
+   ================================================================================
+
+
+Quick Commands:
+===============
+
+To update a publication date:
+npm run set-publication-date "Exact Title Here" YYYY
+
+To see current overrides:
+npm run list-publication-dates
+
+To update all publications after setting dates:
+npm run update-publications
+
+To test locally:
+npm run build && npm run preview
