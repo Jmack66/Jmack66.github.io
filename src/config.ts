@@ -38,7 +38,7 @@ export const siteConfig = {
       title: "An Optimised Spider-Inspired Soft Actuator for Extraterrestrial Exploration",
       authors: "J Mack, M Gepner, F Giorgio-Serchi, AA Stokes",
       journal: "MDPI Journal",
-      year: "2024",
+      year: "2025",
       link: "https://www.mdpi.com/2313-7673/10/7/455",
     },
     {
