@@ -1,22 +1,26 @@
 export const siteConfig = {
   name: "Jonah Mack",
-  title: "Additive Manufacturing and Lab Automation PhD Student",
-  description: "My website",
-  accentColor: "#7900ffff",
+  title: "Mechanical Engineer — Lab Automation & Self-Driving Labs",
+  tagline: "I design, build, and bring things to life.",
+  description:
+    "Portfolio of Jonah Mack — mechanical engineer building self-driving lab hardware, valves, and instrumentation.",
+  accentColor: "#7900ff",
   social: {
     email: "s1862353@ed.ac.uk",
     linkedin: "https://linkedin.com/in/jonah-mack",
     github: "https://github.com/Jmack66",
   },
   aboutMe:
-    "PhD Student in Robotics and Autonomous systems at the University of Edinburgh, focusing on laboratory automation and additive manufacturing. I like to build things.",
+    "PhD researcher in Robotics and Autonomous Systems at the University of Edinburgh, building hardware for self-driving labs — valves, liquid handling, and instrumentation. Also machines, welds, and teaches Design-for-Manufacture on the side.",
   skills: [
     "CAD",
+    "5-Axis CNC Machining",
+    "Welding",
     "C++",
     "Control Systems",
+    "Lab Automation / SDL",
     "Manufacturing",
     "Rapid Prototyping",
-    "Systems Engineering",
   ],
   // Publication fetching configuration
   publicationConfig: {
@@ -34,6 +38,13 @@ export const siteConfig = {
     yearLow: 2020,
   },
   publications: [
+    {
+      title: "A Nonvolatile Switchable-polarity EPM Valve",
+      authors: "B Wang, J Mack, F Giorgio-Serchi, AA Stokes",
+      journal: "arXiv (preprint)",
+      year: "2026",
+      link: "https://arxiv.org/abs/2603.24811",
+    },
     {
       title: "An Optimised Spider-Inspired Soft Actuator for Extraterrestrial Exploration",
       authors: "J Mack, M Gepner, F Giorgio-Serchi, AA Stokes",
@@ -96,56 +107,64 @@ export const siteConfig = {
   ],
   projects: [
     {
-      name: "AI Dev Roundup Newsletter",
+      name: "S-EPM Valve",
       description:
-        "One concise email. Five minutes. Every Tuesday. Essential AI news & trends, production-ready libraries, powerful AI tools, and real-world code examples",
-      link: "https://aidevroundup.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+        "Switchable-Polarity ElectroPermanent Magnet valve for liquid routing. Bistable, zero continuous power, pulsed switching (~0.6 J/switch), rated to 500 kPa static / 320 kPa dynamic. Built to replace solenoid valves whose Joule heating destroys biochemical assays.",
+      link: "https://github.com/Jmack66",
+      skills: ["CAD", "Electromagnetics", "Fluidics", "Testing & Validation"],
     },
     {
-      name: "Chrome Extension Mastery: Build Full-Stack Extensions with React & Node.js",
+      name: "Infinite Fluidic Machines (IFM)",
       description:
-        "Master the art of building production-ready, full-stack Chrome Extensions using modern web technologies and best practices",
-      link: "https://fullstackextensions.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+        "Python CodeCAD library (build123d) for generating modular S-EPM-based fluidic hardware, used to design a full self-driving-lab print bed: thermal management, liquid-handling toolhead, push-pull pneumatics, and embedded imaging.",
+      link: "https://github.com/Jmack66",
+      skills: ["Python", "CodeCAD", "Pneumatics", "Thermal Design", "SDL Hardware"],
     },
     {
-      name: "ExtensionKit",
+      name: "Orion Aerospace",
       description:
-        "Kit to jump-start your Chrome extension projects with a variety of battle-tested starter templates & examples",
-      link: "https://extensionkit.io/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+        "Co-founded and built one of few documented self-landing, thrust-vector-controlled model rockets at this scale. 7+ years of build-test-fly-fail-rebuild cycles, embedded control, and educational content reaching 100k+ views.",
+      link: "https://youtube.com/orionaerospace",
+      skills: ["Embedded Control", "C++", "Manufacturing", "Test & Bring-up"],
     },
   ],
   experience: [
     {
-      company: "Tech Company",
-      title: "Senior Software Engineer",
-      dateRange: "Jan 2022 - Present",
+      company: "Lypo Ltd",
+      title: "Automation Engineer",
+      dateRange: "Sept 2026 - Present",
       bullets: [
-        "Led development of microservices architecture serving 1M+ users",
-        "Reduced API response times by 40% through optimization",
-        "Mentored team of 5 junior developers",
+        "Build low-cost self-driving-lab hardware for a protein-discovery SDL, from concept through bring-up",
+        "Built an autonomous liquid-handling platform from a modified FDM 3D printer with tool-changing and an imaging pipeline, closed-loop under agent-directed control",
+        "Translate scientists' workflow requirements directly into build-ready hardware",
       ],
     },
     {
-      company: "Startup Inc",
-      title: "Full Stack Developer",
-      dateRange: "Jun 2020 - Dec 2021",
+      company: "University of Edinburgh, Soft Systems Group",
+      title: "PhD Researcher, Robotics and Autonomous Systems",
+      dateRange: "2022 - Present",
       bullets: [
-        "Built and launched MVP product from scratch using React and Node.js",
-        "Implemented CI/CD pipeline reducing deployment time by 60%",
-        "Collaborated with product team to define technical requirements",
+        "Designed the S-EPM valve and the Infinite Fluidic Machines print bed (see Projects)",
+        "Built custom test rigs and instrumentation for nearly every publication in the group, plus hardware for external biology/oncology collaborators",
+        "Self-taught 5-axis CNC machining and welding; now teaches Design-for-Manufacture and machining courses at the university",
       ],
     },
     {
-      company: "Digital Agency",
-      title: "Frontend Developer",
-      dateRange: "Aug 2018 - May 2020",
+      company: "Aeroflow",
+      title: "Innovative Design Lead",
+      dateRange: "Aug 2025 - Present",
       bullets: [
-        "Developed responsive web applications for 20+ clients",
-        "Improved site performance scores by 35% on average",
-        "Introduced modern JavaScript frameworks to legacy codebases",
+        "On-call design consultant for a 40 ft aerodynamic trailer program",
+        "Provide onsite manufacturing and welding support during fabrication",
+        "Balance aerodynamic targets against manufacturability and fabrication tolerances",
+      ],
+    },
+    {
+      company: "Konpanion",
+      title: "Engineering Consultant",
+      dateRange: "Apr 2024",
+      bullets: [
+        "Designed and built the power-delivery PCB for 'Maah', Konpanion's commercially-sold companion robot",
       ],
     },
   ],
@@ -155,7 +174,7 @@ export const siteConfig = {
       degree: "Bachelor of Engineering with Honors",
       dateRange: "2018 - 2022",
       achievements: [
-        "Honors thesis awarded best project by the Institute of Mechanical Engineers",
+        "Honors thesis awarded best project by the Institution of Mechanical Engineers",
         "Graduated with a 2.1",
       ],
     },
