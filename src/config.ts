@@ -110,8 +110,13 @@ export const siteConfig = {
       name: "S-EPM Valve",
       description:
         "Switchable-Polarity ElectroPermanent Magnet valve for liquid routing. Bistable, zero continuous power, pulsed switching (~0.6 J/switch), rated to 500 kPa static / 320 kPa dynamic. Built to replace solenoid valves whose Joule heating destroys biochemical assays.",
-      link: "https://github.com/Jmack66",
+      link: "https://arxiv.org/abs/2603.24811",
       skills: ["CAD", "Electromagnetics", "Fluidics", "Testing & Validation"],
+      media: [
+        { type: "video", src: "/media/sepm-valve-mechanism.mp4", caption: "Pinch-valve mechanism: the silicone tube is clamped closed between the magnet poles" },
+        { type: "video", src: "/media/sepm-valve-switching.mp4", caption: "A 1 ms reverse current pulse flips the S-EPM's polarity and the valve state" },
+        { type: "image", src: "/media/sepm-valve-photo.jpg", caption: "The physical valve: 3D-printed housing, permanent magnets, and the S-EPM coil" },
+      ],
     },
     {
       name: "Infinite Fluidic Machines (IFM)",
@@ -126,6 +131,9 @@ export const siteConfig = {
         "Co-founded and built one of few documented self-landing, thrust-vector-controlled model rockets at this scale. 7+ years of build-test-fly-fail-rebuild cycles, embedded control, and educational content reaching 100k+ views.",
       link: "https://youtube.com/orionaerospace",
       skills: ["Embedded Control", "C++", "Manufacturing", "Test & Bring-up"],
+      media: [
+        { type: "youtube", id: "GJxBAZ-TtMo", caption: "Vertically landing a model rocket under thrust-vector control" },
+      ],
     },
   ],
   experience: [
