@@ -167,6 +167,51 @@ export const siteConfig = {
         "Designed and built the power-delivery PCB for 'Maah', Konpanion's commercially-sold companion robot",
       ],
     },
+    {
+      company: "BBC",
+      title: "Engineering Intern/Consultant",
+      dateRange: "Jan 2022 - May 2022",
+      bullets: [
+        "Paid contract to design and manufacture a custom filming enclosure for a future BBC production",
+        "Reverse-engineered complex geometry from previous work and manufactured a working prototype, shipped to the filming site",
+      ],
+    },
+    {
+      company: "Roslin Institute",
+      title: "Engineering Intern",
+      dateRange: "Mar 2022 - Apr 2022",
+      bullets: [
+        "Designed and manufactured an electronically-controlled chicken-neck-mimicking device",
+        "Built test equipment used by a PhD researcher to measure force and motion path in chicken pecking-injury research",
+      ],
+    },
+    {
+      company: "University of Edinburgh (Dr. Parvez Alam)",
+      title: "Engineering Research Intern",
+      dateRange: "Summer 2021",
+      bullets: [
+        "Investigated the feasibility of using electronic waste in low-to-middle income countries to generate useful robotics components",
+        "Work accepted and published at the 2021 IEEE International Humanitarian Technology Conference (IHTC); presented in a 15-minute talk plus Q&A",
+      ],
+    },
+    {
+      company: "Magnum / Hemisphere Brands Ltd",
+      title: "Engineering Consultant — Sanitary Sampling Prototype",
+      dateRange: "Summer 2020",
+      bullets: [
+        "Led the engineering behind a sanitary liquid-sampling device during COVID-19, from concept to a working prototype in 3 months",
+        "Owned a multi-hundred-part CAD assembly, PCB design, firmware, and 3D-printed manufacturing to produce a pilot model for investors",
+      ],
+    },
+    {
+      company: "Endeavour Rockets",
+      title: "Technical Lead",
+      dateRange: "Oct 2019 - Present",
+      bullets: [
+        "One of 3 founding members of the University of Edinburgh's student rocketry team",
+        "Co-leading development of a 50 N liquid-bipropellant engine and a hopper/lander platform for advanced control-systems testing",
+      ],
+    },
   ],
   education: [
     {
