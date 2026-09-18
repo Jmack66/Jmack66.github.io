@@ -7,13 +7,32 @@ import { siteConfig } from "../config";
   class="relative isolate overflow-hidden bg-[#0a0a0a] py-24 md:h-screen"
   style={`--accent-color: ${siteConfig.accentColor}`}
 >
-  <!-- Gradient overlay -->
+  <!-- Base -->
+  <div class="absolute inset-0 -z-10 bg-[#0a0a0a]"></div>
+
+  <!-- Animated gradient field -->
   <div
-    id="hero-glow"
-    class="absolute inset-0 -z-10"
-    style={`background: radial-gradient(ellipse 900px 1300px at 0% 0%, ${siteConfig.accentColor}55 0%, ${siteConfig.accentColor}25 25%, ${siteConfig.accentColor}08 45%, transparent 65%), #0a0a0a`}
+    id="hero-field"
+    aria-hidden="true"
+    class="absolute inset-0 -z-10 overflow-hidden"
   >
+    <div
+      class="hero-blob"
+      style="width:70vw;height:70vw;left:-15vw;top:-20vw;background:radial-gradient(circle, #b026ff 0%, transparent 70%)"
+    >
+    </div>
+    <div
+      class="hero-blob"
+      style="width:55vw;height:55vw;right:-10vw;top:10vh;background:radial-gradient(circle, #6d28d9 0%, transparent 70%)"
+    >
+    </div>
+    <div
+      class="hero-blob"
+      style="width:50vw;height:50vw;left:20vw;bottom:-25vh;background:radial-gradient(circle, #d946ef 0%, transparent 70%)"
+    >
+    </div>
   </div>
+
   <svg
     aria-hidden="true"
     class="absolute inset-0 -z-10 size-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
@@ -36,12 +55,6 @@ import { siteConfig } from "../config";
       height="100%"
       stroke-width={0}></rect>
   </svg>
-  <canvas
-    id="hero-field"
-    data-accent={siteConfig.accentColor}
-    aria-hidden="true"
-    class="absolute inset-0 -z-10 size-full [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
-  ></canvas>
   <div class="h-full mx-auto p-8 sm:p-12 md:p-24 flex items-center">
     <div>
       <h1
@@ -169,97 +182,28 @@ import { siteConfig } from "../config";
 
   const easeOut = [0.16, 1, 0.3, 1];
 
-  // Animated glyph field, à la motion.dev's homepage gradient field —
-  // same engineering-notation vocabulary as before, now with a slow
-  // traveling brightness wave instead of a static tint.
-  (function heroField() {
-    const canvas = document.getElementById("hero-field");
-    const heroEl = document.getElementById("hero");
-    if (!canvas || !heroEl) return;
-    const ctx = canvas.getContext("2d");
+  // Slow-drifting gradient field, à la motion.dev's homepage — three
+  // blurred blobs in shades of purple, each drifting on its own loop.
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
 
-    const hex = (canvas.dataset.accent || "#b026ff").replace("#", "");
-    const r = parseInt(hex.slice(0, 2), 16);
-    const g = parseInt(hex.slice(2, 4), 16);
-    const b = parseInt(hex.slice(4, 6), 16);
-
-    const SYMBOLS = [
-      "⌀12", "R5", "±0.05", "M4x0.7", "45°", "⌀8",
-      "Ra 0.8", "kPa", "⊥", "0.6J", "M3", "⌀6", "R2",
-      "±0.1", "GD&T", "N·m", "IP67", "5-axis",
+  if (!reduceMotion) {
+    const blobs = document.querySelectorAll(".hero-blob");
+    const drifts = [
+      { x: [0, 60, -30, 0], y: [0, -40, 30, 0], duration: 22 },
+      { x: [0, -50, 40, 0], y: [0, 50, -20, 0], duration: 26 },
+      { x: [0, 40, -60, 0], y: [0, -30, 20, 0], duration: 30 },
     ];
-
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let width = 0;
-    let height = 0;
-    let glyphs = [];
-
-    function layout() {
-      const rect = heroEl.getBoundingClientRect();
-      width = rect.width;
-      height = rect.height;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      canvas.style.width = width + "px";
-      canvas.style.height = height + "px";
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-      const cols = Math.max(6, Math.round(width / 170));
-      const rows = Math.max(4, Math.round(height / 170));
-      glyphs = [];
-      let i = 0;
-      for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
-          const jitterX = Math.sin(i * 12.9898) * 45;
-          const jitterY = Math.cos(i * 78.233) * 45;
-          glyphs.push({
-            x: (col + 0.5) * (width / cols) + jitterX,
-            y: (row + 0.5) * (height / rows) + jitterY,
-            text: SYMBOLS[i % SYMBOLS.length],
-            size: 13 + (i % 3) * 4,
-            rot: ((i * 47) % 60) - 30,
-            phase: ((i * 0.6) % (Math.PI * 2)) * 0.15,
-          });
-          i++;
-        }
-      }
-    }
-
-    function draw(t) {
-      ctx.clearRect(0, 0, width, height);
-      for (const gl of glyphs) {
-        const wave = Math.sin(
-          (gl.x + gl.y) * 0.005 + t * Math.PI * 2 + gl.phase
-        );
-        const bright = (wave + 1) / 2;
-        const alpha = 0.08 + bright * 0.34;
-        ctx.save();
-        ctx.translate(gl.x, gl.y);
-        ctx.rotate((gl.rot * Math.PI) / 180);
-        ctx.font = `${gl.size}px monospace`;
-        ctx.textBaseline = "middle";
-        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
-        ctx.fillText(gl.text, 0, 0);
-        ctx.restore();
-      }
-    }
-
-    layout();
-    draw(0);
-    window.addEventListener("resize", layout);
-
-    if (!reduceMotion) {
-      animate(0, 1, {
-        duration: 9,
-        repeat: Infinity,
-        easing: "linear",
-        onUpdate: draw,
-      });
-    }
-  })();
+    blobs.forEach((blob, i) => {
+      const d = drifts[i % drifts.length];
+      animate(
+        blob,
+        { x: d.x, y: d.y, scale: [1, 1.15, 0.95, 1] },
+        { duration: d.duration, repeat: Infinity, easing: "ease-in-out" }
+      );
+    });
+  }
 
   animate(
     "#hero-name",
@@ -276,11 +220,15 @@ import { siteConfig } from "../config";
     { opacity: [0, 1], y: [10, 0] },
     { duration: 0.6, delay: stagger(0.08, { start: 0.55 }), easing: easeOut }
   );
-
-  // Slow ambient "breathing" glow behind the name
-  animate(
-    "#hero-glow",
-    { opacity: [0.75, 1, 0.75], scale: [1, 1.06, 1] },
-    { duration: 7, repeat: Infinity, easing: "ease-in-out" }
-  );
 </script>
+
+<style>
+  .hero-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(70px);
+    opacity: 0.55;
+    mix-blend-mode: screen;
+    will-change: transform;
+  }
+</style>
