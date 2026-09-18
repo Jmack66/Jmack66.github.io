@@ -198,125 +198,48 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
         {siteConfig.sideProjects && siteConfig.sideProjects.length > 0 && (
           <div
             id="side-projects"
-            class="relative mt-16 sm:mt-20 md:mt-24 -mx-8 sm:-mx-12 md:-mx-16 lg:-mx-24 overflow-hidden border-t border-white/10"
-            style={`--accent-color: ${siteConfig.accentColor}`}
+            class="relative mt-16 sm:mt-20 md:mt-24 -mx-8 sm:-mx-12 md:-mx-16 lg:-mx-24 px-8 sm:px-12 md:px-16 lg:px-24 py-10 sm:py-12 md:py-16 border-t border-white/10"
+            style={`--accent-color: ${siteConfig.accentColor}; background: linear-gradient(120deg, var(--accent-color) 0%, #2a0a45 45%, #0a0a0a 100%)`}
           >
-            <div class="flex items-stretch">
-              <button
-                id="side-projects-arrow"
-                type="button"
-                aria-label="Scroll side projects"
-                aria-expanded="false"
-                class="side-projects-tab shrink-0 flex flex-col items-center justify-center gap-4 sm:gap-6 px-3 sm:px-5 md:px-6 py-8 border-r border-white/10 transition-colors duration-700"
-              >
-                <span
-                  id="side-projects-label"
-                  class="side-projects-label text-xs sm:text-sm font-mono uppercase tracking-[0.3em] [writing-mode:vertical-rl] rotate-180 transition-colors duration-700"
-                >
-                  Side Projects
-                </span>
-                <svg
-                  id="side-projects-chevron"
-                  class="side-projects-chevron w-6 h-6 sm:w-8 sm:h-8 transition-colors duration-700"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M9 6l6 6-6 6" />
-                </svg>
-              </button>
+            <h3 class="text-xs sm:text-sm font-mono uppercase tracking-[0.3em] text-white/70 mb-6 sm:mb-8">
+              Side Projects
+            </h3>
 
-              <div
-                id="side-projects-track"
-                class="side-projects-track flex-1 min-w-0 max-w-full sm:max-w-[560px] md:max-w-[700px] lg:max-w-[820px] flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory p-6 sm:p-8 md:p-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-              >
-                {siteConfig.sideProjects.map((project) => {
-                  const media = project.media || [];
-                  const lead = media[0];
-                  const rest = media.slice(1);
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+              {siteConfig.sideProjects.map((project) => {
+                const lead = (project.media || [])[0];
 
-                  return (
-                    <div class="snap-start shrink-0 w-[260px] sm:w-[320px] md:w-[360px] bg-black/50 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/15 p-4 sm:p-5 flex flex-col gap-3">
-                      <div class="flex items-start justify-between gap-3">
-                        <h4 class="text-base sm:text-lg font-bold text-white">
-                          {project.name}
-                        </h4>
-                        {project.link && (
-                          <a
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`View ${project.name}`}
-                            class="shrink-0 w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center bg-white/10 border border-white/10 rounded-full text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-transparent hover:bg-[var(--accent-color)]"
-                          >
-                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17" />
-                            </svg>
-                          </a>
+                return (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group block bg-black/40 backdrop-blur-sm rounded-lg sm:rounded-xl border border-white/15 p-2.5 sm:p-3 transition-colors duration-300 hover:border-white/35"
+                  >
+                    {lead && (
+                      <div class="rounded-md overflow-hidden bg-black aspect-square mb-2.5">
+                        {lead.type === "video" && (
+                          <video src={lead.src} class="w-full h-full object-cover" muted loop playsinline preload="metadata" />
+                        )}
+                        {lead.type === "image" && (
+                          <img src={lead.src} alt={project.name} class="w-full h-full object-cover" loading="lazy" />
+                        )}
+                        {lead.type === "youtube" && (
+                          <img
+                            src={`https://img.youtube.com/vi/${lead.id}/hqdefault.jpg`}
+                            alt={project.name}
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                          />
                         )}
                       </div>
-
-                      {lead && (
-                        <div class="rounded-lg overflow-hidden bg-black aspect-video">
-                          {lead.type === "video" && (
-                            <video src={lead.src} class="w-full h-full object-contain" controls loop muted playsinline preload="metadata" />
-                          )}
-                          {lead.type === "image" && (
-                            <img src={lead.src} alt={lead.caption || project.name} class="w-full h-full object-contain" loading="lazy" />
-                          )}
-                          {lead.type === "youtube" && (
-                            <iframe
-                              class="w-full h-full"
-                              src={`https://www.youtube.com/embed/${lead.id}`}
-                              title={lead.caption || project.name}
-                              frameborder="0"
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                              allowfullscreen
-                              loading="lazy"
-                            />
-                          )}
-                        </div>
-                      )}
-                      {lead?.caption && (
-                        <p class="text-xs text-gray-500 -mt-1.5">{lead.caption}</p>
-                      )}
-
-                      {rest.length > 0 && (
-                        <div class="grid grid-cols-2 gap-2">
-                          {rest.map((m) => (
-                            <div class="rounded-md overflow-hidden bg-black aspect-video">
-                              {m.type === "video" && (
-                                <video src={m.src} class="w-full h-full object-contain" controls loop muted playsinline preload="metadata" />
-                              )}
-                              {m.type === "image" && (
-                                <img src={m.src} alt={m.caption || project.name} class="w-full h-full object-contain" loading="lazy" />
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      )}
-
-                      <p class="text-sm text-gray-400 leading-relaxed">
-                        {project.description}
-                      </p>
-
-                      {project.skills && project.skills.length > 0 && (
-                        <div class="flex flex-wrap gap-1.5 pt-1">
-                          {project.skills.map((skill) => (
-                            <span class="px-2 py-1 bg-white/5 border border-white/10 text-gray-200 rounded-md text-xs font-medium">
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-                <div class="shrink-0 w-1 sm:w-2" aria-hidden="true" />
-              </div>
+                    )}
+                    <h4 class="text-xs sm:text-sm font-bold text-white leading-tight">
+                      {project.name}
+                    </h4>
+                  </a>
+                );
+              })}
             </div>
           </div>
         )}
@@ -324,68 +247,3 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
     </section>
   )
 }
-
-<style>
-  .side-projects-tab {
-    background: rgba(255, 255, 255, 0.02);
-    cursor: pointer;
-  }
-  .side-projects-tab:hover {
-    background: rgba(255, 255, 255, 0.06);
-  }
-  .side-projects-label,
-  .side-projects-chevron {
-    color: rgb(156, 163, 175);
-  }
-  #side-projects {
-    background: transparent;
-    transition: background 0.7s ease;
-  }
-  #side-projects.is-active {
-    background: linear-gradient(
-      120deg,
-      var(--accent-color) 0%,
-      #2a0a45 45%,
-      #0a0a0a 100%
-    );
-  }
-  #side-projects.is-active .side-projects-tab {
-    background: rgba(0, 0, 0, 0.15);
-  }
-  #side-projects.is-active .side-projects-tab:hover {
-    background: rgba(0, 0, 0, 0.25);
-  }
-  #side-projects.is-active .side-projects-label,
-  #side-projects.is-active .side-projects-chevron {
-    color: #ffffff;
-  }
-</style>
-
-<script>
-  const container = document.getElementById("side-projects");
-  const arrow = document.getElementById("side-projects-arrow");
-  const track = document.getElementById("side-projects-track");
-
-  if (container && arrow && track) {
-    arrow.addEventListener("click", () => {
-      if (!container.classList.contains("is-active")) {
-        container.classList.add("is-active");
-        arrow.setAttribute("aria-expanded", "true");
-      }
-
-      const firstCard = track.querySelector("div");
-      const gap = parseFloat(getComputedStyle(track).columnGap || "24");
-      const step = firstCard
-        ? firstCard.getBoundingClientRect().width + gap
-        : track.clientWidth * 0.9;
-
-      const atEnd =
-        track.scrollLeft + track.clientWidth >= track.scrollWidth - 8;
-
-      track.scrollTo({
-        left: atEnd ? 0 : track.scrollLeft + step,
-        behavior: "smooth",
-      });
-    });
-  }
-</script>
