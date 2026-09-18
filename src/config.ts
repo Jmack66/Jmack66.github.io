@@ -141,21 +141,56 @@ export const siteConfig = {
       ],
     },
     {
-      name: "Magnum Smart Sampler",
-      description:
-        "Sanitary liquid-sampling device built for Magnum/Hemisphere Brands during COVID-19, concept to working prototype in 3 months: multi-hundred-part CAD assembly, PCB, firmware, and 3D-printed manufacturing for a pilot model shown to investors.",
-      link: "https://www.youtube.com/watch?v=lWS1v18j9_U",
-      skills: ["CAD", "PCB Design", "Firmware", "Rapid Prototyping"],
-      media: [
-        { type: "youtube", id: "lWS1v18j9_U", caption: "Smart Sampler demo" },
-      ],
-    },
-    {
       name: "Fabrication in the Loop for Self-Driving Labs",
       description:
         "PhD thesis: using tool-changing and in-line additive manufacturing to build a compact, reconfigurable self-driving-lab system — fabrication as a first-class step in the experiment loop, not a separate process.",
       comingSoon: true,
       skills: ["Additive Manufacturing", "SDL Hardware", "Python", "CodeCAD"],
+    },
+  ],
+  sideProjects: [
+    {
+      name: "Magnum Smart Sampler",
+      description:
+        "Sanitary liquid-sampling device built for Magnum/Hemisphere Brands during COVID-19, concept to working prototype in 3 months: multi-hundred-part CAD assembly, PCB, firmware, and 3D-printed manufacturing for a pilot model shown to investors.",
+      link: "https://www.youtube.com/watch?v=lWS1v18j9_U",
+      skills: ["CAD", "PCB Design", "Firmware"],
+      media: [
+        { type: "youtube", id: "lWS1v18j9_U", caption: "Smart Sampler demo" },
+      ],
+    },
+    {
+      name: "Sidekick",
+      description:
+        "Open-source hardware/software ecosystem — a custom control board plus a GUI and C++ macro library — built to make robotics prototyping faster than breadboarding and rewriting the same Arduino code every time.",
+      link: "https://github.com/OrionAerospaceYT/SideKick",
+      skills: ["PCB Design", "C++", "Firmware", "Tooling/GUI"],
+      media: [
+        { type: "image", src: "/media/side/sidekick-board.jpg", caption: "The custom Sidekick control board" },
+        { type: "image", src: "/media/side/sidekick-test-rig.jpg", caption: "Bench-testing a stepper rig live against the Sidekick GUI" },
+        { type: "image", src: "/media/side/sidekick-pcb-macro.jpg", caption: "Macro shot of the board" },
+      ],
+    },
+    {
+      name: "Hoverboard Hack",
+      description:
+        "Reverse-engineered a stock hoverboard's motor controller and Hall-sensor wiring to drive it as a general-purpose motor, becoming the base control layer for a powered furniture mover — hacked start to finish in 48 hours because a friend had to move the next day.",
+      link: "https://github.com/Jmack66/Hoverboard_Hack/tree/main",
+      skills: ["Reverse Engineering", "Firmware", "Motor Control"],
+      media: [
+        { type: "video", src: "/media/side/hoverboard-hack.mp4", caption: "Hacked hoverboard motor running the furniture mover" },
+      ],
+    },
+    {
+      name: "Drawing Robot",
+      description:
+        "A dead Makerbot's XY motion frame given a second life as a 2D plotter for outreach — shown at an art exhibition, then teaching visitors how it works at a Dynamic Earth open day.",
+      link: "https://lnkd.in/p/ebJ5QyFS",
+      skills: ["Outreach", "CodeCAD", "Motion Control"],
+      media: [
+        { type: "image", src: "/media/side/drawing-robot-dynamic-earth-1.jpg", caption: "The plotter on display at Dynamic Earth" },
+        { type: "image", src: "/media/side/drawing-robot-dynamic-earth-2.jpg", caption: "Mid-draw, talking visitors through how it works" },
+      ],
     },
   ],
   experience: [
