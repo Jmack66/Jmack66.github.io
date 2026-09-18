@@ -6,23 +6,23 @@ const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 ---
 
-<footer class="relative bg-gray-50 border-t border-gray-200">
+<footer class="relative bg-black border-t border-white/10">
   <div class="mx-auto max-w-6xl px-6 py-12 lg:px-8">
     <div
       class="flex flex-col md:flex-row md:items-center md:justify-between gap-8"
     >
       <div class="flex flex-col gap-4">
-        <h3 class="text-2xl font-bold text-gray-800">
+        <h3 class="text-2xl font-bold text-white">
           {siteConfig.name}
         </h3>
-        <p class="text-base text-gray-600">
+        <p class="text-base text-gray-400">
           {siteConfig.title}
         </p>
         <div class="flex gap-x-6">
           <a
             href={`mailto:${siteConfig.social.email}`}
             aria-label="Email"
-            class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
+            class="text-gray-400 transition-colors duration-300 hover:text-[var(--accent-color)]"
             style={`--accent-color: ${siteConfig.accentColor}`}
           >
             <svg
@@ -49,7 +49,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
+            class="text-gray-400 transition-colors duration-300 hover:text-[var(--accent-color)]"
             style={`--accent-color: ${siteConfig.accentColor}`}
           >
             <svg
@@ -75,7 +75,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Twitter"
-            class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
+            class="text-gray-400 transition-colors duration-300 hover:text-[var(--accent-color)]"
             style={`--accent-color: ${siteConfig.accentColor}`}
           >
             <svg
@@ -99,7 +99,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
+            class="text-gray-400 transition-colors duration-300 hover:text-[var(--accent-color)]"
             style={`--accent-color: ${siteConfig.accentColor}`}
           >
             <svg
@@ -125,14 +125,14 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
         <nav class="flex gap-x-8">
           <a
             href="#about"
-            class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
+            class="text-sm text-gray-400 hover:text-white transition-colors"
             >About</a
           >
           {
             hasProjects && (
               <a
                 href="#projects"
-                class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
+                class="text-sm text-gray-400 hover:text-white transition-colors"
               >
                 Projects
               </a>
@@ -142,7 +142,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             hasExperience && (
               <a
                 href="#experience"
-                class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
+                class="text-sm text-gray-400 hover:text-white transition-colors"
               >
                 Experience
               </a>
@@ -152,7 +152,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             hasEducation && (
               <a
                 href="#education"
-                class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
+                class="text-sm text-gray-400 hover:text-white transition-colors"
               >
                 Education
               </a>
@@ -171,7 +171,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
   <div class="absolute inset-0 -z-10 overflow-hidden">
     <svg
       aria-hidden="true"
-      class="absolute bottom-0 left-0 w-full h-24 text-gray-100"
+      class="absolute bottom-0 left-0 w-full h-24 text-white/10"
     >
       <pattern
         id="footer-pattern"

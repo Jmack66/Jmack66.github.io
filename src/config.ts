@@ -4,7 +4,7 @@ export const siteConfig = {
   tagline: "I design, build, and bring things to life.",
   description:
     "Portfolio of Jonah Mack — mechanical engineer building self-driving lab hardware, valves, and instrumentation.",
-  accentColor: "#7900ff",
+  accentColor: "#b026ff",
   social: {
     email: "s1862353@ed.ac.uk",
     linkedin: "https://linkedin.com/in/jonah-mack",
@@ -113,17 +113,18 @@ export const siteConfig = {
       link: "https://arxiv.org/abs/2603.24811",
       skills: ["CAD", "Electromagnetics", "Fluidics", "Testing & Validation"],
       media: [
+        { type: "video", src: "/media/sepm-valve-6port-demo.mp4", caption: "A 6-port S-EPM valve manifold routing dyed liquid on demand" },
         { type: "video", src: "/media/sepm-valve-mechanism.mp4", caption: "Pinch-valve mechanism: the silicone tube is clamped closed between the magnet poles" },
         { type: "video", src: "/media/sepm-valve-switching.mp4", caption: "A 1 ms reverse current pulse flips the S-EPM's polarity and the valve state" },
         { type: "image", src: "/media/sepm-valve-photo.jpg", caption: "The physical valve: 3D-printed housing, permanent magnets, and the S-EPM coil" },
       ],
     },
     {
-      name: "Infinite Fluidic Machines (IFM)",
+      name: "Fluidic Soft-Systems Platform",
       description:
-        "Python CodeCAD library (build123d) for generating modular S-EPM-based fluidic hardware, used to design a full self-driving-lab print bed: thermal management, liquid-handling toolhead, push-pull pneumatics, and embedded imaging.",
-      link: "https://github.com/Jmack66",
-      skills: ["Python", "CodeCAD", "Pneumatics", "Thermal Design", "SDL Hardware"],
+        "A standardized platform for translating fluidic soft robots out of the lab: recirculating-flow actuation embodying control intelligence in the fluid itself, rather than in discrete electronics per joint.",
+      link: "https://www.cell.com/device/fulltext/S2666-9986(25)00113-9",
+      skills: ["Soft Robotics", "Fluidics", "CAD", "Testing & Validation"],
     },
     {
       name: "Orion Aerospace",
@@ -133,7 +134,25 @@ export const siteConfig = {
       skills: ["Embedded Control", "C++", "Manufacturing", "Test & Bring-up"],
       media: [
         { type: "youtube", id: "GJxBAZ-TtMo", caption: "Vertically landing a model rocket under thrust-vector control" },
+        { type: "video", src: "/media/orion-insight-launch.mp4", caption: "Insight C-1 launch, raw flight footage" },
       ],
+    },
+    {
+      name: "Magnum Smart Sampler",
+      description:
+        "Sanitary liquid-sampling device built for Magnum/Hemisphere Brands during COVID-19, concept to working prototype in 3 months: multi-hundred-part CAD assembly, PCB, firmware, and 3D-printed manufacturing for a pilot model shown to investors.",
+      link: "https://www.youtube.com/watch?v=lWS1v18j9_U",
+      skills: ["CAD", "PCB Design", "Firmware", "Rapid Prototyping"],
+      media: [
+        { type: "youtube", id: "lWS1v18j9_U", caption: "Smart Sampler demo" },
+      ],
+    },
+    {
+      name: "Fabrication in the Loop for Self-Driving Labs",
+      description:
+        "PhD thesis: using tool-changing and in-line additive manufacturing to build a compact, reconfigurable self-driving-lab system — fabrication as a first-class step in the experiment loop, not a separate process.",
+      comingSoon: true,
+      skills: ["Additive Manufacturing", "SDL Hardware", "Python", "CodeCAD"],
     },
   ],
   experience: [
@@ -152,7 +171,7 @@ export const siteConfig = {
       title: "PhD Researcher, Robotics and Autonomous Systems",
       dateRange: "2022 - Present",
       bullets: [
-        "Designed the S-EPM valve and the Infinite Fluidic Machines print bed (see Projects)",
+        "Co-developed the S-EPM valve and designed the Infinite Fluidic Machines print bed (see Projects)",
         "Built custom test rigs and instrumentation for nearly every publication in the group, plus hardware for external biology/oncology collaborators",
         "Self-taught 5-axis CNC machining and welding; now teaches Design-for-Manufacture and machining courses at the university",
       ],
