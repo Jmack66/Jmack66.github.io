@@ -81,21 +81,6 @@ import { siteConfig } from "../config";
               style="transform: rotate(-6deg)"
             >
               <img
-                src="/media/photos/jonah-shenanigans.jpg"
-                alt={`${siteConfig.firstName} shooting on a tripod in the street at night`}
-                class="w-full h-full object-cover"
-                width="400"
-                height="600"
-              />
-            </div>
-
-            <!-- tertiary photo, fanned out from the secondary -->
-            <div
-              id="hero-photo-tertiary"
-              class="absolute -bottom-3 left-[7.5rem] sm:-bottom-4 sm:left-[9.5rem] md:left-[11rem] w-[105px] sm:w-[135px] md:w-[155px] aspect-[2/3] rounded-xl overflow-hidden border border-white/15 shadow-2xl bg-black z-20"
-              style="transform: rotate(5deg)"
-            >
-              <img
                 src="/media/photos/jonah-silly2.jpg"
                 alt={`${siteConfig.firstName} filming with a camera at night`}
                 class="w-full h-full object-cover"
@@ -300,7 +285,6 @@ import { siteConfig } from "../config";
   // Subtle pointer-follow tilt on the photo stack.
   const photoStack = document.getElementById("hero-photo-stack");
   const photoSecondary = document.getElementById("hero-photo-secondary");
-  const photoTertiary = document.getElementById("hero-photo-tertiary");
 
   if (photoStack && hero && !reduceMotion) {
     let targetX = 0;
@@ -324,9 +308,6 @@ import { siteConfig } from "../config";
       photoStack.style.transform = `rotateY(${curX * 12}deg) rotateX(${-curY * 12}deg)`;
       if (photoSecondary) {
         photoSecondary.style.transform = `rotate(-6deg) translate(${curX * 16}px, ${curY * 16}px)`;
-      }
-      if (photoTertiary) {
-        photoTertiary.style.transform = `rotate(5deg) translate(${curX * 22}px, ${curY * 22}px)`;
       }
       requestAnimationFrame(tiltLoop);
     }
