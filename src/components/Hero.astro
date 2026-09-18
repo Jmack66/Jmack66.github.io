@@ -9,6 +9,7 @@ import { siteConfig } from "../config";
 >
   <!-- Gradient overlay -->
   <div
+    id="hero-glow"
     class="absolute inset-0 -z-10"
     style={`background: radial-gradient(ellipse 900px 1300px at 0% 0%, ${siteConfig.accentColor}55 0%, ${siteConfig.accentColor}25 25%, ${siteConfig.accentColor}08 45%, transparent 65%), #0a0a0a`}
   >
@@ -131,54 +132,28 @@ import { siteConfig } from "../config";
   </svg>
   <div class="h-full mx-auto p-8 sm:p-12 md:p-24 flex items-center">
     <div>
-      <h2
-        class="text-pretty text-xl sm:text-2xl md:text-5xl font-bold tracking-tight text-gray-400 animate-fade-in"
-      >
-        Hello! 👋
-      </h2>
       <h1
-        class="mt-6 sm:mt-8 md:mt-10 text-pretty text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-bold tracking-tighter text-white animate-fade-in animation-delay-200"
+        id="hero-name"
+        class="text-pretty text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-bold tracking-tighter text-white"
+        style="opacity:0"
       >
         I'm <span style={{ color: siteConfig.accentColor }}
-          >{siteConfig.name}</span
+          >{siteConfig.firstName}</span
         >
       </h1>
       <p
-        class="mt-4 sm:mt-6 md:mt-8 text-pretty text-base sm:text-lg md:text-xl/8 font-medium text-gray-400 animate-fade-in animation-delay-400"
+        id="hero-tagline"
+        class="mt-4 sm:mt-6 md:mt-8 text-pretty text-base sm:text-lg md:text-xl/8 font-medium text-gray-400"
+        style="opacity:0"
       >
         {siteConfig.tagline}
       </p>
     </div>
   </div>
   <div
-    class="absolute bottom-0 left-0 right-0 p-8 sm:p-12 md:p-24 flex gap-x-4 sm:gap-x-6 md:gap-x-8 text-gray-400 animate-fade-in animation-delay-600"
+    id="hero-socials"
+    class="absolute bottom-0 left-0 right-0 p-8 sm:p-12 md:p-24 flex gap-x-4 sm:gap-x-6 md:gap-x-8 text-gray-400"
   >
-    {
-      siteConfig.social?.email && (
-        <a
-          href={`mailto:${siteConfig.social.email}`}
-          aria-label="Email"
-          class="transition-colors duration-300 hover:text-[var(--accent-color)]"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
-            <path d="M3 7l9 6l9 -6" />
-          </svg>
-        </a>
-      )
-    }
     {
       siteConfig.social?.linkedin && (
         <a
@@ -187,6 +162,7 @@ import { siteConfig } from "../config";
           rel="noopener noreferrer"
           aria-label="LinkedIn"
           class="transition-colors duration-300 hover:text-[var(--accent-color)]"
+          style="opacity:0"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -220,6 +196,7 @@ import { siteConfig } from "../config";
           rel="noopener noreferrer"
           aria-label="Twitter"
           class="transition-colors duration-300 hover:text-[var(--accent-color)]"
+          style="opacity:0"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -250,6 +227,7 @@ import { siteConfig } from "../config";
           rel="noopener noreferrer"
           aria-label="GitHub"
           class="transition-colors duration-300 hover:text-[var(--accent-color)]"
+          style="opacity:0"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -274,32 +252,31 @@ import { siteConfig } from "../config";
   </div>
 </div>
 
-<style>
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+<script>
+  import { animate, stagger } from "motion";
 
-  .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-    opacity: 0;
-  }
+  const easeOut = [0.16, 1, 0.3, 1];
 
-  .animation-delay-200 {
-    animation-delay: 0.2s;
-  }
+  animate(
+    "#hero-name",
+    { opacity: [0, 1], y: [28, 0] },
+    { duration: 0.9, easing: easeOut }
+  );
+  animate(
+    "#hero-tagline",
+    { opacity: [0, 1], y: [16, 0] },
+    { duration: 0.8, delay: 0.3, easing: easeOut }
+  );
+  animate(
+    "#hero-socials a",
+    { opacity: [0, 1], y: [10, 0] },
+    { duration: 0.6, delay: stagger(0.08, { start: 0.55 }), easing: easeOut }
+  );
 
-  .animation-delay-400 {
-    animation-delay: 0.4s;
-  }
-
-  .animation-delay-600 {
-    animation-delay: 0.6s;
-  }
-</style>
+  // Slow ambient "breathing" glow behind the name
+  animate(
+    "#hero-glow",
+    { opacity: [0.75, 1, 0.75], scale: [1, 1.06, 1] },
+    { duration: 7, repeat: Infinity, easing: "ease-in-out" }
+  );
+</script>

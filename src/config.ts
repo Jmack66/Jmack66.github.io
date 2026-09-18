@@ -1,5 +1,6 @@
 export const siteConfig = {
   name: "Jonah Mack",
+  firstName: "Jonah",
   title: "Mechanical Engineer — Lab Automation & Self-Driving Labs",
   tagline: "I design, build, and bring things to life.",
   description:
@@ -11,7 +12,7 @@ export const siteConfig = {
     github: "https://github.com/Jmack66",
   },
   aboutMe:
-    "PhD researcher in Robotics and Autonomous Systems at the University of Edinburgh, building hardware for self-driving labs — valves, liquid handling, and instrumentation. Also machines, welds, and teaches Design-for-Manufacture on the side.",
+    "PhD researcher in Robotics and Autonomous Systems at the University of Edinburgh, building hardware for self-driving labs—valves, liquid handling, and instrumentation—with experience in CAD, machining, welding, and Design for Manufacture.",
   skills: [
     "CAD",
     "5-Axis CNC Machining",
@@ -21,6 +22,7 @@ export const siteConfig = {
     "Lab Automation / SDL",
     "Manufacturing",
     "Rapid Prototyping",
+    "Videography & Editing",
   ],
   // Publication fetching configuration
   publicationConfig: {
@@ -115,8 +117,6 @@ export const siteConfig = {
       media: [
         { type: "video", src: "/media/sepm-valve-6port-demo.mp4", caption: "A 6-port S-EPM valve manifold routing dyed liquid on demand" },
         { type: "video", src: "/media/sepm-valve-mechanism.mp4", caption: "Pinch-valve mechanism: the silicone tube is clamped closed between the magnet poles" },
-        { type: "video", src: "/media/sepm-valve-switching.mp4", caption: "A 1 ms reverse current pulse flips the S-EPM's polarity and the valve state" },
-        { type: "image", src: "/media/sepm-valve-photo.jpg", caption: "The physical valve: 3D-printed housing, permanent magnets, and the S-EPM coil" },
       ],
     },
     {
@@ -125,6 +125,9 @@ export const siteConfig = {
         "A standardized platform for translating fluidic soft robots out of the lab: recirculating-flow actuation embodying control intelligence in the fluid itself, rather than in discrete electronics per joint.",
       link: "https://www.cell.com/device/fulltext/S2666-9986(25)00113-9",
       skills: ["Soft Robotics", "Fluidics", "CAD", "Testing & Validation"],
+      media: [
+        { type: "video", src: "/media/flexbot-fluidic-platform.mp4", caption: "Fluidically-actuated soft robot under pneumatic power, 7x speed" },
+      ],
     },
     {
       name: "Orion Aerospace",
