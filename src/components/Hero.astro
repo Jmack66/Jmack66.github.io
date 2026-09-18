@@ -29,107 +29,19 @@ import { siteConfig } from "../config";
       >
         <path d="M.5 200V.5H200" fill="none"></path>
       </pattern>
-      <pattern
-        id="engineering-symbols"
-        x="0"
-        y="0"
-        width="400"
-        height="400"
-        patternUnits="userSpaceOnUse"
-      >
-        <text
-          x="50"
-          y="50"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="24"
-          transform="rotate(-15)">&#8960;12</text
-        >
-        <text
-          x="150"
-          y="100"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="20"
-          transform="rotate(10)">R5</text
-        >
-        <text
-          x="250"
-          y="80"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="18"
-          transform="rotate(-5)">&#177;0.05</text
-        >
-        <text
-          x="100"
-          y="200"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="22"
-          transform="rotate(15)">M4x0.7</text
-        >
-        <text
-          x="300"
-          y="180"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="20"
-          transform="rotate(-10)">45&#176;</text
-        >
-        <text
-          x="200"
-          y="250"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="24"
-          transform="rotate(5)">&#8960;8</text
-        >
-        <text
-          x="50"
-          y="320"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="18"
-          transform="rotate(-8)">Ra 0.8</text
-        >
-        <text
-          x="350"
-          y="300"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="22"
-          transform="rotate(12)">kPa</text
-        >
-        <text
-          x="150"
-          y="350"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="20"
-          transform="rotate(-15)">&#8869;</text
-        >
-        <text
-          x="250"
-          y="370"
-          fill={siteConfig.accentColor}
-          font-family="monospace"
-          font-size="24"
-          transform="rotate(8)">0.6J</text
-        >
-      </pattern>
     </defs>
-    <rect
-      fill="url(#engineering-symbols)"
-      width="100%"
-      height="100%"
-      opacity="0.35"></rect>
     <rect
       fill="url(#0787a7c5-978c-4f66-83c7-11c213f99cb7)"
       width="100%"
       height="100%"
       stroke-width={0}></rect>
   </svg>
+  <canvas
+    id="hero-field"
+    data-accent={siteConfig.accentColor}
+    aria-hidden="true"
+    class="absolute inset-0 -z-10 size-full [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
+  ></canvas>
   <div class="h-full mx-auto p-8 sm:p-12 md:p-24 flex items-center">
     <div>
       <h1
@@ -256,6 +168,98 @@ import { siteConfig } from "../config";
   import { animate, stagger } from "motion";
 
   const easeOut = [0.16, 1, 0.3, 1];
+
+  // Animated glyph field, à la motion.dev's homepage gradient field —
+  // same engineering-notation vocabulary as before, now with a slow
+  // traveling brightness wave instead of a static tint.
+  (function heroField() {
+    const canvas = document.getElementById("hero-field");
+    const heroEl = document.getElementById("hero");
+    if (!canvas || !heroEl) return;
+    const ctx = canvas.getContext("2d");
+
+    const hex = (canvas.dataset.accent || "#b026ff").replace("#", "");
+    const r = parseInt(hex.slice(0, 2), 16);
+    const g = parseInt(hex.slice(2, 4), 16);
+    const b = parseInt(hex.slice(4, 6), 16);
+
+    const SYMBOLS = [
+      "⌀12", "R5", "±0.05", "M4x0.7", "45°", "⌀8",
+      "Ra 0.8", "kPa", "⊥", "0.6J", "M3", "⌀6", "R2",
+      "±0.1", "GD&T", "N·m", "IP67", "5-axis",
+    ];
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let width = 0;
+    let height = 0;
+    let glyphs = [];
+
+    function layout() {
+      const rect = heroEl.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const cols = Math.max(6, Math.round(width / 170));
+      const rows = Math.max(4, Math.round(height / 170));
+      glyphs = [];
+      let i = 0;
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          const jitterX = Math.sin(i * 12.9898) * 45;
+          const jitterY = Math.cos(i * 78.233) * 45;
+          glyphs.push({
+            x: (col + 0.5) * (width / cols) + jitterX,
+            y: (row + 0.5) * (height / rows) + jitterY,
+            text: SYMBOLS[i % SYMBOLS.length],
+            size: 13 + (i % 3) * 4,
+            rot: ((i * 47) % 60) - 30,
+            phase: ((i * 0.6) % (Math.PI * 2)) * 0.15,
+          });
+          i++;
+        }
+      }
+    }
+
+    function draw(t) {
+      ctx.clearRect(0, 0, width, height);
+      for (const gl of glyphs) {
+        const wave = Math.sin(
+          (gl.x + gl.y) * 0.005 + t * Math.PI * 2 + gl.phase
+        );
+        const bright = (wave + 1) / 2;
+        const alpha = 0.08 + bright * 0.34;
+        ctx.save();
+        ctx.translate(gl.x, gl.y);
+        ctx.rotate((gl.rot * Math.PI) / 180);
+        ctx.font = `${gl.size}px monospace`;
+        ctx.textBaseline = "middle";
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        ctx.fillText(gl.text, 0, 0);
+        ctx.restore();
+      }
+    }
+
+    layout();
+    draw(0);
+    window.addEventListener("resize", layout);
+
+    if (!reduceMotion) {
+      animate(0, 1, {
+        duration: 9,
+        repeat: Infinity,
+        easing: "linear",
+        onUpdate: draw,
+      });
+    }
+  })();
 
   animate(
     "#hero-name",
