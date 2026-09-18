@@ -231,7 +231,7 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 
               <div
                 id="side-projects-track"
-                class="side-projects-track flex-1 flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory p-6 sm:p-8 md:p-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                class="side-projects-track flex-1 min-w-0 max-w-full sm:max-w-[560px] md:max-w-[700px] lg:max-w-[820px] flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory p-6 sm:p-8 md:p-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               >
                 {siteConfig.sideProjects.map((project) => {
                   const media = project.media || [];
@@ -373,11 +373,17 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
         arrow.setAttribute("aria-expanded", "true");
       }
 
+      const firstCard = track.querySelector("div");
+      const gap = parseFloat(getComputedStyle(track).columnGap || "24");
+      const step = firstCard
+        ? firstCard.getBoundingClientRect().width + gap
+        : track.clientWidth * 0.9;
+
       const atEnd =
         track.scrollLeft + track.clientWidth >= track.scrollWidth - 8;
 
-      track.scrollBy({
-        left: atEnd ? -track.scrollWidth : track.clientWidth * 0.9,
+      track.scrollTo({
+        left: atEnd ? 0 : track.scrollLeft + step,
         behavior: "smooth",
       });
     });
